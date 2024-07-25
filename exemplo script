@@ -1,0 +1,36 @@
+$Patrimonio = Read-Host -Prompt "Digite o número de patrimônio"
+
+$SerialNumber = (Get-WmiObject -Class Win32_BIOS).SerialNumber
+
+$LoggedUser = $env:USERNAME										             #Variáveis para formação do hostname
+
+$NewHostName = "NOME-$Patrimonio-$SerialNumber"								           #Variável que configura o layout do hostname
+
+Write-Host "Novo hostname: $NewHostName"								         #Imprime para o usuário mensagem
+
+$confirm = Read-Host "
+*REBOOT AUTOMÁTICO SALVE APPS ABERTOS* Deseja alterar o hostname $NewHostName? (S/N)"                            #Solicita entrada do usuário para confirmação da alteração
+if ($confirm -eq "S" -or $confirm -eq "s") {
+    
+    Rename-Computer -NewName $NewHostName -Force                                                                  #Função que troca o hostname de fato e ignora limitação de tamanho
+    
+    
+    $From = "exemplo@remetente.com"
+    $To = "exemplo@destinatario.com"										             #Variáveis que configuram o email
+    $Subject = "Ajuste hostname"
+    $Body = "O hostname do computador foi alterado para: `n`n $NewHostName `n`n User: $LoggedUser"
+    
+   
+    $Password = "Password único de aplicativo Gmail" | ConvertTo-SecureString -AsPlainText -Force                   #Rotina de autenticação para ser usado envio por Gmail
+    
+    $Credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $From, $Password     #Necessário 2fa e senha de uso para app.
+    
+    Send-MailMessage -From $From -To $To -Subject $Subject -Body $Body -SmtpServer "smtp.gmail.com" -Port 587 -UseSsl -Credential $Credential 
+    
+Start-Sleep -Seconds 30                                                                                      #Configura tempo de espera de 30s para o reboot 
+
+Restart-Computer -Force											     #Força reinicio
+   
+} else {
+    Write-Host "Operação cancelada. O hostname não foi alterado."                                            #Retorno para o usuário em caso de negativa na confirmação da alteração
+}
