@@ -7,6 +7,8 @@ No código de exemplo é solicitado ao usuário input de número de patrimônio 
 
 Formando a seguinte estrutura: NOME-PATRIMONIO-SERIALNUMBER.
 
+Ignora limite de tamanho de hostname.
+
 Encaminha feedback via e-mail com novo hostname configurado e usuário que fez a alteração.
 
 Idealizado para ser usado em conjunto com Gmail.
