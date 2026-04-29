@@ -14,3 +14,8 @@ A PowerShell utility designed to standardize and automate the process of renamin
 
 *   PowerShell
 *   SMTP / Gmail API
+
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
