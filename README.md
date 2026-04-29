@@ -1,26 +1,16 @@
-# troca_hostname
-Script PowerShell para troca de hostname.
+# Windows Hostname Automator
 
-Script que realiza troca do hostname para estrutura predeterminada de máquinas Windows via PowerShell e envia feedback por e-mail.
+![PowerShell](https://img.shields.io/badge/PowerShell-5.1+-blue.svg)
 
-No código de exemplo é solicitado ao usuário input de número de patrimônio e o script se encarrega de solicitar para bios o serial number do dispositivo.
+A PowerShell utility designed to standardize and automate the process of renaming Windows workstations in a corporate environment.
 
-Formando a seguinte estrutura: NOME-PATRIMONIO-SERIALNUMBER.
+## 🚀 Key Features
 
-Ignora limite de tamanho de hostname.
+*   **Dynamic Generation:** Creates standardized hostnames based on BIOS serial numbers and custom prefixes.
+*   **Deployment Monitoring:** Sends detailed email notifications via SMTP/Gmail API upon successful completion.
+*   **Corporate Ready:** Ideal for large-scale workstation deployments and asset management.
 
-Encaminha feedback via e-mail com novo hostname configurado e usuário que fez a alteração.
+## 🛠️ Tech Stack
 
-Idealizado para ser usado em conjunto com Gmail.
-
-Necessário 2fa ativado (https://myaccount.google.com/two-step-verification/phone-numbers).
-
-Necessário senha de app (https://myaccount.google.com/apppasswords).
-
-Recomendado compilação com PS2EXE.
-
-Necessário permissão administrador.
-
-Efetivamente hostnames só são trocados no Windows após reboot do sistema, portanto, existe rotina para reboot após 30s viabilizando o envio do e-mail.
-
-
+*   PowerShell
+*   SMTP / Gmail API
